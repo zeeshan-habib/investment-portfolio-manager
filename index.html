@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Portfolio Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#05070a">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="animate-fade-in">
+            <div>
+                <h1>Growth Portfolio Dashboard</h1>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem;" id="last-updated">Last Updated: April 18, 2026</p>
+            </div>
+            <div class="action-bar">
+                <button class="btn btn-secondary" id="settings-btn">
+                    <i data-lucide="settings"></i>
+                </button>
+                <button class="btn btn-secondary" id="run-ai-btn">
+                    <i data-lucide="sparkles"></i>
+                    AI Review
+                </button>
+                <button class="btn btn-primary" id="copy-claude-btn">
+                    <i data-lucide="message-square"></i>
+                    Copy Prompt
+                </button>
+            </div>
+        </header>
+
+        <section class="summary-grid animate-fade-in" style="animation-delay: 0.1s">
+            <div class="card">
+                <div class="card-title"><i data-lucide="wallet"></i> Total Portfolio (CAD)</div>
+                <div class="card-value" id="total-value-cad">$0.00</div>
+                <div class="card-delta delta-up" id="total-gain-pct">+0.0%</div>
+            </div>
+            <div class="card">
+                <div class="card-title"><i data-lucide="shield-check"></i> Risk Management</div>
+                <div class="card-value" id="risk-status">Healthy</div>
+                <div class="card-delta" id="risk-flags">0 Flags detected</div>
+            </div>
+            <div class="card">
+                <div class="card-title"><i data-lucide="banknote"></i> PLOC Leverage</div>
+                <div class="card-value" id="ploc-cash">$0.00</div>
+                <div class="card-delta" id="ploc-status">Above requirement</div>
+            </div>
+        </section>
+
+        <section class="animate-fade-in" style="animation-delay: 0.2s">
+            <h2 class="section-title"><i data-lucide="layout-grid"></i> Current Holdings</h2>
+            <div class="portfolio-table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Symbol</th>
+                            <th>Name</th>
+                            <th>Account</th>
+                            <th>Sector</th>
+                            <th>Value (CAD)</th>
+                            <th>Allocation</th>
+                            <th>Gain/Loss</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="holdings-table-body">
+                        <!-- Dynamic Content -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="animate-fade-in" style="animation-delay: 0.3s">
+            <h2 class="section-title"><i data-lucide="alert-triangle"></i> Strategic Alerts</h2>
+            <div class="summary-grid" id="alerts-container">
+                <!-- Dynamic Alerts -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal-overlay" style="display: none;">
+        <div class="card modal-content">
+            <h2 class="section-title"><i data-lucide="settings"></i> API Configuration</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.875rem;">
+                Enter your API keys to enable live stock prices and direct AI reviews.
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <div>
+                    <label style="font-size: 0.75rem; color: var(--text-secondary);">Anthropic API Key</label>
+                    <input type="password" id="anthropic-key" placeholder="sk-ant-..." style="width: 100%; padding: 0.75rem; border-radius: 0.5rem; background: rgba(255,255,255,0.05); border: 1px solid var(--card-border); color: white; margin-top: 0.25rem;">
+                </div>
+                <div>
+                    <label style="font-size: 0.75rem; color: var(--text-secondary);">AlphaVantage API Key (Market Data)</label>
+                    <input type="password" id="market-key" placeholder="API Key" style="width: 100%; padding: 0.75rem; border-radius: 0.5rem; background: rgba(255,255,255,0.05); border: 1px solid var(--card-border); color: white; margin-top: 0.25rem;">
+                </div>
+                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                    <button class="btn btn-primary" id="save-settings" style="flex: 1">Save Settings</button>
+                    <button class="btn btn-secondary" id="close-settings">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Review Result -->
+    <div id="ai-review-overlay" class="modal-overlay" style="display: none;">
+        <div class="card modal-content" style="max-width: 800px;">
+            <h2 class="section-title"><i data-lucide="sparkles"></i> AI Investment Review</h2>
+            <div id="ai-response-content" style="font-size: 0.9375rem; line-height: 1.6; max-height: 60vh; overflow-y: auto; color: var(--text-primary);">
+                <!-- AI Output Here -->
+                <p>Analyzing your portfolio with Claude Sonnet...</p>
+            </div>
+            <button class="btn btn-secondary" id="close-ai-review" style="margin-top: 1.5rem; width: 100%;">Close Review</button>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</body>
+</html>
