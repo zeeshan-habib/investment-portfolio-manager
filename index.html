@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Investment Portfolio Manager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Growth Portfolio Pro</title>
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#05070a">
@@ -16,26 +16,26 @@
 <body>
     <div class="dashboard-container">
         <div class="sticky-header-container">
-            <header class="animate-fade-in" style="display: flex; flex-direction: column; align-items: flex-start; gap: 0.75rem;">
-                <h1>Growth Portfolio Dashboard</h1>
-                <p style="color: var(--text-secondary); font-size: 0.8125rem;" id="last-updated">Last Updated: April 18, 2026</p>
+            <header class="animate-fade-in" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.5rem;">
+                <h1 style="font-size: 1.5rem; width: 100%;">Growth Portfolio Dashboard</h1>
+                <p style="color: var(--text-secondary); font-size: 0.75rem; width: 100%;" id="last-updated">Last Updated: April 18, 2026</p>
                 
-                <div class="action-bar" style="margin-top: 0.5rem;">
-                    <button class="btn btn-secondary" id="settings-btn">
+                <div class="action-bar" style="justify-content: center; margin-top: 0.5rem; width: 100%; max-width: 400px;">
+                    <button class="btn btn-secondary" id="settings-btn" style="flex: 0 0 auto; width: 44px; padding: 0;">
                         <i data-lucide="settings"></i>
                     </button>
-                    <button class="btn btn-secondary" id="run-ai-btn">
+                    <button class="btn btn-secondary" id="run-ai-btn" style="flex: 1;">
                         <i data-lucide="sparkles"></i>
                         AI Review
                     </button>
-                    <button class="btn btn-primary" id="copy-claude-btn">
+                    <button class="btn btn-primary" id="copy-claude-btn" style="flex: 1;">
                         <i data-lucide="message-square"></i>
-                        Copy Prompt
+                        Prompt
                     </button>
                 </div>
             </header>
 
-            <section class="summary-grid animate-fade-in" style="animation-delay: 0.1s; margin-top: 1.25rem; margin-bottom: 0.5rem;">
+            <section class="summary-grid animate-fade-in" style="margin-top: 1rem; margin-bottom: 0.25rem;">
                 <div class="card">
                     <div class="card-title"><i data-lucide="wallet"></i> Total Portfolio (CAD)</div>
                     <div class="card-value" id="total-value-cad">$0.00</div>
