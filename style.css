@@ -22,11 +22,16 @@ body {
   background-color: var(--bg-color);
   color: var(--text-primary);
   min-height: 100vh;
-  padding: 1.5rem;
+  padding: 0;
   overflow-x: hidden;
-  background-image: 
-    radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 100% 100%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+  background: 
+    linear-gradient(rgba(5, 7, 10, 0.8), rgba(5, 7, 10, 0.9)),
+    radial-gradient(circle at 0% 0%, rgba(16, 185, 129, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 100% 100%, rgba(59, 130, 246, 0.15) 0%, transparent 40%),
+    url('https://images.unsplash.com/photo-1611974717482-48a66504b216?q=80&w=2070&auto=format&fit=crop');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 .dashboard-container {
@@ -35,20 +40,16 @@ body {
   width: 100%;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 2.5rem;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-@media (min-width: 768px) {
-  header {
-    flex-direction: row;
-    align-items: center;
-  }
+.sticky-header-container {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(5, 7, 10, 0.6);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--card-border);
+  padding: 1.5rem 1.5rem 1rem 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 h1 {
@@ -64,7 +65,6 @@ h1 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.75rem;
-  margin-bottom: 2.5rem;
 }
 
 @media (max-width: 600px) {
@@ -80,7 +80,7 @@ h1 {
   padding: 1rem;
   backdrop-filter: var(--glass-blur);
   transition: transform 0.2s ease, border-color 0.2s ease;
-  min-width: 0; /* Prevents overflow in flex/grid */
+  min-width: 0;
 }
 
 @media (min-width: 768px) {
@@ -186,18 +186,6 @@ tr:hover td {
   font-weight: 600;
 }
 
-.badge-financials { background: rgba(59, 130, 246, 0.1); color: #60a5fa; }
-.badge-energy { background: rgba(245, 158, 11, 0.1); color: #fbbf24; }
-.badge-tech { background: rgba(139, 92, 246, 0.1); color: #a78bfa; }
-.badge-ai { background: rgba(236, 72, 153, 0.1); color: #f472b6; }
-
-.flag-warning {
-  color: var(--accent-amber);
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-
 .action-bar {
   display: flex;
   gap: 0.5rem;
@@ -238,32 +226,12 @@ tr:hover td {
   color: white;
 }
 
-.btn-primary:hover {
-  background: #2563eb;
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-}
-
 .btn-secondary {
   background: var(--card-bg);
   color: var(--text-primary);
   border-color: var(--card-border);
 }
 
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.5s ease forwards;
-}
-
-/* Modal Styles */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -287,8 +255,11 @@ tr:hover td {
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
-input:focus {
-  outline: none;
-  border-color: var(--accent-blue) !important;
-  background: rgba(255, 255, 255, 0.08) !important;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease forwards;
 }
