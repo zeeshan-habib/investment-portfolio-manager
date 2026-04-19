@@ -15,11 +15,10 @@
 </head>
 <body>
     <div class="dashboard-container">
-        <header class="animate-fade-in">
-            <div>
-                <h1>Growth Portfolio Dashboard</h1>
-                <p style="color: var(--text-secondary); margin-top: 0.5rem;" id="last-updated">Last Updated: April 18, 2026</p>
-            </div>
+        <header class="animate-fade-in" style="display: flex; flex-direction: column; align-items: flex-start; gap: 1rem;">
+            <h1>Growth Portfolio Dashboard</h1>
+            <p style="color: var(--text-secondary); font-size: 0.875rem;" id="last-updated">Last Updated: April 18, 2026</p>
+            
             <div class="action-bar">
                 <button class="btn btn-secondary" id="settings-btn">
                     <i data-lucide="settings"></i>
@@ -35,7 +34,7 @@
             </div>
         </header>
 
-        <section class="summary-grid animate-fade-in" style="animation-delay: 0.1s">
+        <section class="summary-grid animate-fade-in" style="animation-delay: 0.1s; margin-top: 1rem;">
             <div class="card">
                 <div class="card-title"><i data-lucide="wallet"></i> Total Portfolio (CAD)</div>
                 <div class="card-value" id="total-value-cad">$0.00</div>
@@ -62,11 +61,10 @@
                             <th>Symbol</th>
                             <th>Name</th>
                             <th>Account</th>
-                            <th>Sector</th>
+                            <th>Price</th>
                             <th>Value (CAD)</th>
                             <th>Allocation</th>
                             <th>Gain/Loss</th>
-                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody id="holdings-table-body">

@@ -74,16 +74,13 @@ function renderDashboard() {
       <td><strong>${pos.symbol}</strong></td>
       <td>${pos.name}</td>
       <td><span class="badge" style="background: rgba(255,255,255,0.05)">${pos.account}</span></td>
-      <td><span class="badge badge-tech">${pos.sector}</span></td>
-      <td>${formatCurrency(pos.valueCAD)}</td>
+      <td>${formatCurrency(pos.currentPrice, pos.currency)}</td>
+      <td style="font-weight: 600">${formatCurrency(pos.valueCAD)}</td>
       <td style="color: ${isOverAllocated ? 'var(--accent-ruby)' : 'inherit'}">
         ${allocation.toFixed(1)}%
       </td>
       <td class="${pos.gainLossCAD >= 0 ? 'delta-up' : 'delta-down'}">
         ${pos.gainLossPct > 0 ? '+' : ''}${pos.gainLossPct.toFixed(1)}%
-      </td>
-      <td>
-        ${isOverAllocated ? '<span class="flag-warning"><i data-lucide="alert-circle" size="14"></i> Trim</span>' : '✅ Healthy'}
       </td>
     `;
     tbody.appendChild(row);
