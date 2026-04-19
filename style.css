@@ -145,14 +145,20 @@ h1 {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 1.5rem;
-  overflow: hidden;
+  overflow-x: auto;
   margin-bottom: 3rem;
+  -webkit-overflow-scrolling: touch;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
+  min-width: 900px;
+}
+
+th, td {
+  white-space: nowrap;
 }
 
 th {
